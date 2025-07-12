@@ -35,5 +35,18 @@ namespace TalentUP.Controllers
 
             return Ok(criado);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> getColaboradores()
+        {
+            var lista = await _colaboradorService.getColaboradores();
+
+            if (lista == null || !lista.Any())
+            {
+                return NoContent();
+            }
+            
+            return Ok(lista);
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TalentUP.Data;
 using TalentUP.Models.Colaborador;
 
@@ -30,6 +31,12 @@ namespace TalentUP.Services
             _context.Colaboradores.Add(colaborador);
             await _context.SaveChangesAsync();
             return colaborador;
+        }
+
+        public async Task<List<Colaborador>> getColaboradores() {
+
+            return await _context.Colaboradores.ToListAsync();
+
         }
     }
 }
