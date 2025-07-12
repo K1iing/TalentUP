@@ -1,0 +1,6 @@
+@TalentUP_HostAddress = http://localhost:5283
+
+GET {{TalentUP_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
