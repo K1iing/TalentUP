@@ -26,9 +26,9 @@ namespace TalentUP.Controllers
         [HttpPost]
         public async Task<IActionResult> addColaborador(ColaboradorCreateDTO dto)
         {
-            if (dto.nome == null && String.IsNullOrWhiteSpace(dto.nome))
+            if (String.IsNullOrWhiteSpace(dto.nome) || dto.nome == "string")
             {
-                return BadRequest("Colaborador não cadastrado");
+                return BadRequest("Colaborador está nulo ou vazio");
             }
 
             var criado = await _colaboradorService.addColaborador(dto);
