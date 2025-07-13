@@ -5184,11 +5184,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gabri\\OneDrive\\Desktop\\ProjetoRecompensa\\TalentUP\\TalentUP.csproj",
+      "projectUniqueName": "C:\\Users\\gabri\\OneDrive\\Desktop\\A\\TalentUP\\TalentUP.csproj",
       "projectName": "TalentUP",
-      "projectPath": "C:\\Users\\gabri\\OneDrive\\Desktop\\ProjetoRecompensa\\TalentUP\\TalentUP.csproj",
+      "projectPath": "C:\\Users\\gabri\\OneDrive\\Desktop\\A\\TalentUP\\TalentUP.csproj",
       "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gabri\\OneDrive\\Desktop\\ProjetoRecompensa\\TalentUP\\obj\\",
+      "outputPath": "C:\\Users\\gabri\\OneDrive\\Desktop\\A\\TalentUP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
