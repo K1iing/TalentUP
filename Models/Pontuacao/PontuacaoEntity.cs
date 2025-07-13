@@ -16,6 +16,6 @@ namespace TalentUP.Models.Pontuacao
 
         public int ValorPontos { get; set; }
 
-    
+     
     }
 }

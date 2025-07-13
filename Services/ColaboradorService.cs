@@ -60,10 +60,20 @@ namespace TalentUP.Services
             var entidade = await _context.Colaboradores.FindAsync(id);
 
             _context.Colaboradores.Remove(entidade);
-            
+
             await _context.SaveChangesAsync();
 
             return entidade;
+        }
+
+
+        public async Task<bool> adicionarPontosTotal(int colaboradorId, int pontos)
+        {
+            var colaborador = await _context.Colaboradores.FirstOrDefaultAsync(M => M.Id == colaboradorId);
+
+            colaborador.Pontuacao += pontos;
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }
