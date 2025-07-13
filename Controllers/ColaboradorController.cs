@@ -45,8 +45,35 @@ namespace TalentUP.Controllers
             {
                 return NoContent();
             }
-            
+
             return Ok(lista);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> updateColaboradores(int id, String nome)
+        {
+            var update = await _colaboradorService.updateColaborador(id, nome);
+
+            if (update == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(update);
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> updateColaboradores(int id)
+        {
+            var update = await _colaboradorService.deleteColaborador(id);
+
+            if (update == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok("Usuario removido com sucesso!");
         }
     }
 }

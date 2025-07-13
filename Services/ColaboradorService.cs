@@ -1,7 +1,7 @@
 
 
+
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TalentUP.Data;
 using TalentUP.Models.Colaborador;
@@ -33,10 +33,37 @@ namespace TalentUP.Services
             return colaborador;
         }
 
-        public async Task<List<Colaborador>> getColaboradores() {
+
+        //Retorna uma lista com todos os colaboradores
+        public async Task<List<Colaborador>> getColaboradores()
+        {
 
             return await _context.Colaboradores.ToListAsync();
 
+        }
+
+        public async Task<Colaborador> updateColaborador(int id, String nome)
+        {
+
+            var entidade = await _context.Colaboradores.FindAsync(id);
+
+            entidade.Nome = nome;
+
+            await _context.SaveChangesAsync();
+
+            return entidade;
+        }
+
+        public async Task<Colaborador> deleteColaborador(int id)
+        {
+
+            var entidade = await _context.Colaboradores.FindAsync(id);
+
+            _context.Colaboradores.Remove(entidade);
+            
+            await _context.SaveChangesAsync();
+
+            return entidade;
         }
     }
 }
