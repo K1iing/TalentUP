@@ -1,3 +1,5 @@
+using TalentUP.Models.Badge;
+
 namespace TalentUP.Models.Colaborador
 {
     public class Colaborador
@@ -8,5 +10,8 @@ namespace TalentUP.Models.Colaborador
 
         //Pontuação començando sempre com 0
         public double Pontuacao { get; set; } = 0;
+
+        public List<BadgeEntity> Badges { get; set; } = new List<BadgeEntity>();
+      
     }
 }

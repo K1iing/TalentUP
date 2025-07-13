@@ -11,10 +11,12 @@ namespace TalentUP.Services
     public class ColaboradorService
     {
         private readonly AppDbContext _context;
+        private readonly BadgeService _badgeService;
 
-        public ColaboradorService(AppDbContext context)
+        public ColaboradorService(AppDbContext context, BadgeService badgeService)
         {
             _context = context;
+            _badgeService = badgeService;
         }
 
 
@@ -38,7 +40,9 @@ namespace TalentUP.Services
         public async Task<List<Colaborador>> getColaboradores()
         {
 
-            return await _context.Colaboradores.ToListAsync();
+            return await _context.Colaboradores
+                         .Include(c => c.Badges)
+                         .ToListAsync();
 
         }
 
@@ -69,11 +73,30 @@ namespace TalentUP.Services
 
         public async Task<bool> adicionarPontosTotal(int colaboradorId, int pontos)
         {
-            var colaborador = await _context.Colaboradores.FirstOrDefaultAsync(M => M.Id == colaboradorId);
+            var colaborador = await _context.Colaboradores
+                                   .Include(c => c.Badges)
+                                   .FirstOrDefaultAsync(M => M.Id == colaboradorId);
 
             colaborador.Pontuacao += pontos;
-            await _context.SaveChangesAsync();
+
+
+            if (colaborador.Pontuacao >= 10)
+            {
+                bool jaTemBadge = colaborador.Badges.Any(b => b.Nome == "Pontual");
+                
+                if (!jaTemBadge)
+                {
+                    var badges = await _badgeService.addBadgesColaborador("Pontual", "Você alcançou 10 pontos", colaborador.Nome);
+                    colaborador.Badges.Add(badges);
+                    await _context.SaveChangesAsync();
+                }
+
+            }
+
             return true;
         }
+
+
+
     }
 }

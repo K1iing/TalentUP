@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TalentUP.Models.Badge;
 using TalentUP.Models.Colaborador;
 using TalentUP.Models.Pontuacao;
 
@@ -13,5 +14,7 @@ namespace TalentUP.Data
         //Seta a entidade no DbContext criando o construtor
         public DbSet<Colaborador> Colaboradores { get; set; }
         public DbSet<PontuacaoEntity> PontuacaoEntities { get; set; }
+
+        public DbSet<BadgeEntity> BadgeEntities { get; set; }
     }
 }

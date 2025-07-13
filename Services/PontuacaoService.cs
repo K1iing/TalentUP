@@ -22,9 +22,6 @@ namespace TalentUP.Services
              _colaboradorService = colaboradorService;
         }
 
-        
-
-
         public async Task<PontuacaoEntity> adicionarPontuacao(String nome, String tipo, String descricao, int pontos)
         {
             var colaborador = await _context.Colaboradores.FirstOrDefaultAsync(m => m.Nome == nome);
@@ -41,8 +38,6 @@ namespace TalentUP.Services
 
             await _colaboradorService.adicionarPontosTotal(id, pontos);
             
-
-
 
                 _context.PontuacaoEntities.Add(entidade);
 
