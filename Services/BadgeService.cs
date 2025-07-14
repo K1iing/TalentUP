@@ -20,23 +20,28 @@ namespace TalentUP.Services
         public async Task<BadgeEntity> addBadgesColaborador(String nomeBadges, String descricao, String nomeColaborador)
         {
 
-            var colaborador = await _context.Colaboradores.FirstOrDefaultAsync(M => M.Nome == nomeColaborador);
+            var colaborador = await _context.Colaboradores
+            .Include(c => c.Badges)
+            .FirstOrDefaultAsync(m => m.Nome == nomeColaborador);
 
-            int id = colaborador.Id;
+            if (colaborador == null)
+                throw new Exception("Colaborador não encontrado");
 
-            var badges = new BadgeEntity
+
+            if (colaborador.Badges.Any(b => b.Nome == nomeBadges))
+                return null;
+
+            var badge = new BadgeEntity
             {
                 Nome = nomeBadges,
                 Descricao = descricao,
-                ColaboradorId = id
-
+                ColaboradorId = colaborador.Id
             };
 
-            _context.BadgeEntities.Add(badges);
-
+            _context.BadgeEntities.Add(badge);
             await _context.SaveChangesAsync();
 
-            return badges;
+            return badge;
         }
 
 
