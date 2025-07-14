@@ -21,7 +21,7 @@ namespace TalentUP.Models
         public Colaborador.Colaborador Criador { get; set; }
 
         // 🟢 Quem ajudou na task
-        public int AjudanteId { get; set; }
+        public int? AjudanteId { get; set; }
 
         [ForeignKey("AjudanteId")]
         public Colaborador.Colaborador Ajudante { get; set; }

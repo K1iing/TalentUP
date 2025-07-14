@@ -4,7 +4,10 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using TalentUP.Data;
+using TalentUP.Models.Badge;
 using TalentUP.Models.Colaborador;
+using TalentUP.Models.Colaborador.ColaboradorBadge;
+using TalentUP.Models.Task;
 
 namespace TalentUP.Services
 {
@@ -37,12 +40,40 @@ namespace TalentUP.Services
 
 
         //Retorna uma lista com todos os colaboradores
-        public async Task<List<Colaborador>> getColaboradores()
+        public async Task<List<ColaboradorDTO>> getColaboradores()
         {
 
-            return await _context.Colaboradores
-                         .Include(c => c.Badges)
-                         .ToListAsync();
+            var colaboradores = await _context.Colaboradores
+                                     .Include(c => c.Badges)
+                                     .Include(c => c.TasksCriadas)
+                                     .Include(c => c.TasksAjudadas)
+                                     .ToListAsync();
+
+            return colaboradores.Select(c => new ColaboradorDTO
+            {
+                Id = c.Id,
+                Nome = c.Nome,
+                Pontuacao = c.Pontuacao,
+                Badges = c.Badges.Select(b => new BadgeDTO
+                {
+                    Id = b.Id,
+                    Nome = b.Nome,
+                    Descricao = b.Descricao,
+                    ColaboradorId = b.ColaboradorId
+                }).ToList(),
+                TasksCriadas = c.TasksCriadas.Select(t => new TaskDTO
+                {
+                    Id = t.Id,
+                    DescricaoTask = t.DescricaoTask,
+                    Status = t.Status
+                }).ToList(),
+                TasksAjudadas = c.TasksAjudadas.Select(t => new TaskDTO
+                {
+                    Id = t.Id,
+                    DescricaoTask = t.DescricaoTask,
+                    Status = t.Status
+                }).ToList()
+            }).ToList();
 
         }
 

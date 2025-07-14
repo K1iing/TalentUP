@@ -38,6 +38,7 @@ namespace TalentUP.Data
                 .HasOne(t => t.Ajudante)
                 .WithMany(c => c.TasksAjudadas)
                 .HasForeignKey(t => t.AjudanteId)
+                .IsRequired(false)  
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ColaboradorService>();
 builder.Services.AddScoped<PontuacaoService>();
 builder.Services.AddScoped<BadgeService>();
+builder.Services.AddScoped<TaskService>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
