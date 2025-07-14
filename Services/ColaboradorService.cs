@@ -83,7 +83,7 @@ namespace TalentUP.Services
             if (colaborador.Pontuacao >= 10)
             {
                 bool jaTemBadge = colaborador.Badges.Any(b => b.Nome == "Pontual");
-                
+
                 if (!jaTemBadge)
                 {
                     var badges = await _badgeService.addBadgesColaborador("Pontual", "Você alcançou 10 pontos", colaborador.Nome);

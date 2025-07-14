@@ -21,18 +21,6 @@ namespace TalentUP.Controllers
             _badgeservice = badgeService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> addBadges(BadgeCreateDTO dto)
-        {
-            if (String.IsNullOrWhiteSpace(dto.NomeBadges))
-            {
-                return BadRequest("Está nulo ou vazio");
-            }
-
-            
-            
-            return Ok("entidade");
-        }
         
     }
 }
