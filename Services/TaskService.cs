@@ -136,6 +136,87 @@ namespace TalentUP.Services
             };
         }
 
+
+        public async Task<TaskResponseDTO> finishTask(int taskId, string nomeCriador)
+        {
+            var colaborador = await _context.Colaboradores
+        .Include(c => c.Badges)
+        .FirstOrDefaultAsync(c => c.Nome == nomeCriador);
+
+            if (colaborador == null)
+                throw new Exception("Colaborador não encontrado");
+
+            var task = await _context.taskEntities
+                .Include(t => t.Criador)
+                .Include(t => t.Ajudante)
+                .FirstOrDefaultAsync(t => t.Id == taskId);
+
+            if (task == null)
+                throw new Exception("Task não encontrada");
+
+            
+            task.Status = "Finalizada";
+
+           
+            colaborador.Pontuacao += 15;
+
+            if (colaborador.Pontuacao >= 250)
+            {
+                await _badgeService.addBadgesColaborador("Mago Lendário do Sistema", "Você atingiu 250 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 225)
+            {
+                await _badgeService.addBadgesColaborador("Dragão dos Algoritmos", "Você atingiu 225 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 200)
+            {
+                await _badgeService.addBadgesColaborador("Bruxo das Nuvens", "Você atingiu 200 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 175)
+            {
+                await _badgeService.addBadgesColaborador("Guardião dos Servidores", "Você atingiu 175 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 150)
+            {
+                await _badgeService.addBadgesColaborador("Conjurador de Scripts", "Você atingiu 150 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 125)
+            {
+                await _badgeService.addBadgesColaborador("Cavaleiro do Código", "Você atingiu 125 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 100)
+            {
+                await _badgeService.addBadgesColaborador("Sábio dos Dados", "Você atingiu 100 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 75)
+            {
+                await _badgeService.addBadgesColaborador("Arqueiro da Rede", "Você atingiu 75 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 50)
+            {
+                await _badgeService.addBadgesColaborador("Escudeiro do Debug", "Você atingiu 50 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 25)
+            {
+                await _badgeService.addBadgesColaborador("Aprendiz de Byte", "Você atingiu 25 pontos!", nomeCriador);
+            }
+            else if (colaborador.Pontuacao >= 10)
+            {
+                await _badgeService.addBadgesColaborador("Iniciante da Matrix", "Você atingiu 10 pontos!", nomeCriador);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return new TaskResponseDTO
+            {
+                Id = task.Id,
+                DescricaoTask = task.DescricaoTask,
+                Status = task.Status,
+                NomeCriador = task.Criador.Nome,
+                NomeAjudante = task.Ajudante?.Nome
+            };
+        }
+
     }
 
 

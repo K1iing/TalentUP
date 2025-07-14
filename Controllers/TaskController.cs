@@ -47,6 +47,21 @@ namespace TalentUP.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpPut("{taskId}/finishTask")]
+        public async Task<IActionResult> finishTask(int taskId, [FromBody] FinishDTO dto)
+        {
+            try
+            {
+                var updatedTask = await _taskService.finishTask(taskId, dto.NomeCriador);
+                return Ok(updatedTask);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 
     
