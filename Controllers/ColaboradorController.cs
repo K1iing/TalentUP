@@ -10,10 +10,8 @@ namespace TalentUP.Controllers
     //Passa a rota é o controller é o nome da entidade
     [Route("[controller]")]
 
-    //Traz as configurações do ControllerBase
     public class ColaboradorController : ControllerBase
     {
-        //Faz a injeção de dependencia trazendo o Services
         private readonly ColaboradorService _colaboradorService;
 
         public ColaboradorController(ColaboradorService colaboradorService)
@@ -23,6 +21,7 @@ namespace TalentUP.Controllers
 
 
         //Cria um novo colaborador
+
         [HttpPost]
         public async Task<IActionResult> addColaborador(ColaboradorCreateDTO dto)
         {
@@ -34,6 +33,16 @@ namespace TalentUP.Controllers
             var criado = await _colaboradorService.addColaborador(dto);
 
             return Ok(criado);
+        }
+
+
+
+        [HttpGet("{nome}")]
+        public async Task<IActionResult> getColaboradorId(string nome)
+        {
+            var dados = await _colaboradorService.getColaboradorById(nome);
+
+            return Ok(dados);
         }
 
         [HttpGet]

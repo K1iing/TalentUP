@@ -77,6 +77,45 @@ namespace TalentUP.Services
 
         }
 
+
+        public async Task<ColaboradorDTO?> getColaboradorById(string nome)
+        {
+            var colaborador = await _context.Colaboradores
+                .Where(c => c.Nome == nome)  
+                .Include(c => c.Badges)
+                .Include(c => c.TasksCriadas)
+                .Include(c => c.TasksAjudadas)
+                .FirstOrDefaultAsync();
+
+            if (colaborador == null)
+                return null;
+
+            return new ColaboradorDTO
+            {
+                Id = colaborador.Id,
+                Nome = colaborador.Nome,
+                Pontuacao = colaborador.Pontuacao,
+                Badges = colaborador.Badges.Select(b => new BadgeDTO
+                {
+                    Id = b.Id,
+                    Nome = b.Nome,
+                    Descricao = b.Descricao,
+                    ColaboradorId = b.ColaboradorId
+                }).ToList(),
+                TasksCriadas = colaborador.TasksCriadas.Select(t => new TaskDTO
+                {
+                    Id = t.Id,
+                    DescricaoTask = t.DescricaoTask,
+                    Status = t.Status
+                }).ToList(),
+                TasksAjudadas = colaborador.TasksAjudadas.Select(t => new TaskDTO
+                {
+                    Id = t.Id,
+                    DescricaoTask = t.DescricaoTask,
+                    Status = t.Status
+                }).ToList()
+            };
+        }
         public async Task<Colaborador> updateColaborador(int id, String nome)
         {
 
