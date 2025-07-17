@@ -1,183 +1,146 @@
+🚀 Visão Geral
 
-![Imagem do WhatsApp de 2025-07-14 à(s) 17 38 52_d89e1af6](https://github.com/user-attachments/assets/704cab80-91d0-4052-a122-044f51cf7418)
+O TalentUP é uma plataforma corporativa pensada para aumentar o engajamento entre colaboradores por meio de gamificação. Cada colaborador pode criar tarefas, ajudar colegas e acumular pontos que liberam conquistas (badges). O foco atual do repositório está no back-end/API + banco de dados; a interface .NET MAUI está em desenvolvimento.
 
-Visão Geral
+🎯 Objetivos
 
-O TalentUP é uma plataforma corporativa feita para ajudar pessoas a colaborar em tarefas, usando um sistema de pontos e prêmios (gamificação). O foco principal deste projeto está no desenvolvimento do backend e do banco de dados, que são a base do sistema. A ideia é que as pessoas se ajudem, ganhem pontos e desbloqueiem conquistas, aumentando o envolvimento e a produtividade.
+Engajar colaboradores com pontos & conquistas.
 
-Objetivos do Sistema
+Facilitar organização e acompanhamento de tarefas entre equipes.
 
-•
-Aumentar o envolvimento dos colaboradores com jogos (gamificação).
+Incentivar ajuda entre áreas diferentes.
 
-•
-Facilitar a organização de tarefas entre equipes.
+Oferecer painel simples para ver tarefas, pontos e prêmios.
 
-•
-Incentivar a ajuda entre pessoas de diferentes áreas.
+🧭 Como Funciona
 
-•
-Ter um painel fácil de usar para ver tarefas, pontos e prêmios.
+Login por nome → Colaborador entra só digitando o nome.Pontuação & Conquistas → Painel mostra pontos acumulados e badges desbloqueadas.Gerenciamento de Tarefas → Criar tarefa (descrição + status), listar todas, ver só as suas, acompanhar status (Ativa / Finalizada).Ajudar Colegas → Registrar-se como ajudante em tarefas de outros.Finalização → Ao concluir, criador e ajudantes recebem pontos; checagem de conquistas.
 
-Como Funciona (Funcionalidades Principais)
+🏗 Arquitetura
 
-•
-Entrar (Login): Você entra na plataforma só com seu nome.
+Back-end: ASP.NET Core 9 (ajuste para sua versão instalada; compatível com .NET 8+).Banco: SQL Server + Entity Framework Core.Front: .NET MAUI (em construção) → telas de login, tarefas, detalhes, pontos & conquistas.Comunicação: App consome API via HttpClient (JSON).
 
-•
-Ver Pontos e Prêmios: Cada pessoa pode ver seus pontos e os prêmios que já ganhou.
+🔁 Fluxo do Usuário
 
-•
-Organizar Tarefas:
+Digita nome e entra.
 
-•
-Criar Tarefas: Você pode criar novas tarefas, dizendo o que é e se está ativa.
+Vê painel com pontos & conquistas.
 
-•
-Ver Suas Tarefas: Veja as tarefas que você criou (ativas ou já feitas).
+Lista tarefas (todas ou minhas).
 
-•
-Ver Todas as Tarefas: Veja todas as tarefas disponíveis no sistema.
+Cria nova tarefa (descrição, status inicial = Ativa).
 
-•
-Ajudar em Tarefas: Você pode se oferecer para ajudar em tarefas de outras pessoas.
+Pode se registrar como ajudante em tarefa de outro colaborador.
 
-•
-Terminar Tarefas: Quando uma tarefa é concluída, quem criou e quem ajudou ganha pontos.
+Ao finalizar: distribui pontos, atualiza status, verifica conquistas.
 
-•
-Sistema de Prêmios: Acumular pontos te dá prêmios (ex: 50 pontos = “Iniciante Da Matrix”).
+🏅 Regras de Pontuação & Conquistas
 
-Como é Feito (Arquitetura do Sistema)
+Ajuste conforme sua política interna.
 
-(Backend)
-•
-Tecnologia: Usamos ASP.NET Core 9 para criar a parte que faz a lógica do sistema (API REST).
+Evento
 
-•
-Banco de Dados: Guardamos as informações no SQL Server, usando o Entity Framework Core para organizar os dados.
+Pontos Criador
 
-•
-Caminhos Principais (Endpoints da API):
+Pontos Ajudante
 
-•
-POST /Colaborador: Para cadastrar novas pessoas.
+Tarefa finalizada
 
-•
-GET /Colaborador: Para ver a lista de todas as pessoas cadastradas.
++15
 
-•
-POST /Task: Para criar uma nova tarefa.
++10
 
-•
-PUT /Task/{taskId}/helper: Para adicionar alguém como ajudante em uma tarefa.
+Níveis sugeridos:
 
-•
-PUT /Task/{taskId}/finishTask: Para finalizar uma tarefa e dar os pontos.
+50 pts → Iniciante Da Matrix
 
-Parte da Frente (Frontend) - Onde Você Vê e Interage (Em Desenvolvimento)
+100 pts → Colaborador Prata
+📡 Endpoints da API
 
-•
-Tecnologia: Está sendo desenvolvida com .NET MAUI.
+Método
 
-•
-Funcionalidades: Terá telas para entrar, ver tarefas, ver detalhes de tarefas (com opção de ajudar) e ver seus pontos e prêmios.
+Rota
 
-Como as Partes se Falam (Comunicação)
+Descrição
 
-•
-O Front-End (app MAUI) se conecta com o Back-End (API) usando HttpClient.
+POST
 
-•
-As informações são trocadas no formato JSON.
+/Colaborador
 
-Como Usar (Fluxo do Usuário)
+Cadastra colaborador.
 
-1.
-Entrar: Digite seu nome na tela inicial.
+GET
 
-2.
-Painel Principal: Veja seus pontos e prêmios.
+/Colaborador
 
-3.
-Tarefas: Você pode criar tarefas novas, ver todas as tarefas disponíveis ou ajudar em tarefas de outras pessoas.
+Lista colaboradores.
 
-4.
-Terminar Tarefa: Quando uma tarefa é feita, quem criou e quem ajudou ganha pontos, e o sistema verifica se você ganhou novos prêmios.
+POST
 
-Imagens (Screenshots)
+/Task
 
+Cria nova tarefa.
+
+PUT
+
+/Task/{taskId}/helper
+
+⚙️ Instalação Rápida
+
+Pré-requisitos
+
+.NET 8 SDK ou superior (recomendado 9 se disponível)
+
+SQL Server (local ou remoto)
+
+Visual Studio 2022+ (com workloads .NET e MAUI se quiser testar o front)
+
+Backend
+
+# Clonar
+git clone https://github.com/K1iing/TalentUP.git
+cd TalentUP
+
+# Ajustar conexão no appsettings.json
+# Depois aplicar migrações
+ dotnet ef database update
+
+# Rodar API
+ dotnet run
+# API em http://localhost:5283 (ajuste conforme seu profile)
+
+📷 Screenshots
+
+As imagens abaixo estão hospedadas em GitHub user-attachments (prévias do desenvolvimento MAUI).
 
 Tela de Login
 
-<img width="1598" height="818" alt="{9222DE33-80E2-4912-9CF9-BB0A68C2824E}" src="https://github.com/user-attachments/assets/9f0e2a06-772d-4c5d-9079-4db1d9f4f97c" />
-
 Cadastro Realizado com Sucesso
-
-<img width="1598" height="821" alt="image" src="https://github.com/user-attachments/assets/e02ef6de-16e4-480e-88d1-3f1e5db43bc5" />
 
 Criar Nova Tarefa
 
-<img width="1600" height="816" alt="{D55C69AD-B750-48D5-A431-A0F2F3C465C7}" src="https://github.com/user-attachments/assets/a6b33dd6-17bf-4992-b1cc-5c92268e8ba0" />
-
 Tarefas Disponíveis para Ajudar
 
-<img width="1595" height="807" alt="{08958171-7210-4CC7-9B4C-05ED9A0E3031}" src="https://github.com/user-attachments/assets/7a129b88-f5d2-4a04-8357-362b3d68f3d0" />
-
-Ajuda em Tarefa Registrada
-
-<img width="1600" height="809" alt="{50E37E44-76F2-428B-AA40-C63F73BE6C17}" src="https://github.com/user-attachments/assets/20103f67-fe3c-4589-b4c7-0f1579afabcd" />
+Ajuda Registrada
 
 Detalhes do Colaborador
 
-<img width="1600" height="810" alt="{53EBD86F-2C44-4CE2-8EC5-3A69753613AF}" src="https://github.com/user-attachments/assets/66472a8d-6008-44af-a66b-6c81aae61a57" />
-
 Endpoints da API
 
-<img width="1514" height="682" alt="{6D4F9CA8-813F-4D01-BB15-330C538617D0}" src="https://github.com/user-attachments/assets/13a7101c-fd63-4932-b806-4dafd673be99" />
+Estrutura de Pastas Backend
 
-Estrutura de Pastas do Backend
+Schema: dbo.taskEntities
 
-<img width="308" height="695" alt="{0644AC4B-FCEE-4F73-A5E7-CCE953F848E1}" src="https://github.com/user-attachments/assets/9851ea84-637d-4c9e-9d1d-16e5083dccc1" />
+Schema: dbo.PontuacaoEntities
 
-Esquema da Tabela dbo.taskEntities
+Schema: dbo.Colaboradores
 
-<img width="309" height="127" alt="{C77BCA75-7F62-4173-8098-DCCEA1730E96}" src="https://github.com/user-attachments/assets/63220a29-7493-4609-a7f4-c8c627c8494a" />
+Schema: dbo.BadgeEntities
 
-Esquema da Tabela dbo.PontuacaoEntities
+Associa ajudante.
 
-<img width="291" height="130" alt="{52AAFF7D-9486-4F73-8082-AE0062E41BAE}" src="https://github.com/user-attachments/assets/f6db8d9c-b8e4-4b06-bced-0f13539a1b6c" />
+PUT
 
-Esquema da Tabela dbo.Colaboradores
+/Task/{taskId}/finishTask
 
-<img width="256" height="95" alt="{4ED2796A-287F-4B2E-92AB-FAB30E1D5605}" src="https://github.com/user-attachments/assets/1d92f6a3-7635-404e-b75f-1520f8a34d28" />
-
-Esquema da Tabela dbo.BadgeEntities
-
-<img width="288" height="114" alt="{894CCC9B-0B8E-46E6-88D6-A64AFBB05D3E}" src="https://github.com/user-attachments/assets/ea909759-091f-4f09-a874-d7e607ec774a" />
-
-
-Como Instalar
-
-O que Você Precisa (Pré-requisitos)
-
-•
-.NET 8 SDK
-
-•
-SQL Server
-
-•
-Visual Studio (recomendado)
-
-Configurando a Parte de Trás (Backend)
-
-1.
-Baixe o projeto: git clone https://github.com/K1iing/TalentUP.git
-
-2.
-Ajuste o Banco de Dados: No arquivo appsettings.json, mude a conexão para seu SQL Server. Depois, rode dotnet ef database update.
-
-3.
-Inicie o Backend: dotnet run (ele vai funcionar em https://localhost:5283).
-
+Finaliza e distribui pontos.
