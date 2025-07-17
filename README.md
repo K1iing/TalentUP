@@ -47,7 +47,7 @@ O **TalentUP** é uma plataforma corporativa pensada para aumentar o engajamento
 
 ## 🏗 Arquitetura
 
-**Back-end:** ASP.NET Core 9 (ajuste para sua versão instalada; compatível com .NET 8+).
+**Back-end:** ASP.NET Core 9
 **Banco:** SQL Server + Entity Framework Core.
 **Front:** .NET MAUI (em construção) → telas de login, tarefas, detalhes, pontos & conquistas.
 **Comunicação:** App consome API via `HttpClient` (JSON).
@@ -59,38 +59,10 @@ O **TalentUP** é uma plataforma corporativa pensada para aumentar o engajamento
 1. Digita nome e entra.
 2. Vê painel com pontos & conquistas.
 3. Lista tarefas (todas ou minhas).
-4. Cria nova tarefa (descrição, status inicial = Ativa).
+4. Cria nova tarefa (descrição, status inicial).
 5. Pode se registrar como ajudante em tarefa de outro colaborador.
 6. Ao finalizar: distribui pontos, atualiza status, verifica conquistas.
 
----
-
-## 🧾 Modelos de Dados (Simplificado)
-
-**Colaborador**
-
-```json
-{
-  "id": 1,
-  "nome": "João",
-  "pontuacao": 150,
-  "conquistas": ["Iniciante Da Matrix", "Colaborador Prata"]
-}
-```
-
-**Task**
-
-```json
-{
-  "id": 10,
-  "descricao": "Organizar documentos",
-  "status": "Ativa",
-  "criador": "Maria",
-  "ajudantes": ["João", "Pedro"]
-}
-```
-
----
 
 ## 🏅 Regras de Pontuação & Conquistas
 
@@ -100,7 +72,7 @@ O **TalentUP** é uma plataforma corporativa pensada para aumentar o engajamento
 | ----------------- | -------------- | --------------- |
 | Tarefa finalizada | +15            | +10             |
 
-**Níveis sugeridos:**
+**Níveis:**
 
 * 50 pts → *Iniciante Da Matrix*
 * 100 pts → *Colaborador Prata*
@@ -118,32 +90,13 @@ O **TalentUP** é uma plataforma corporativa pensada para aumentar o engajamento
 | `PUT`  | `/Task/{taskId}/helper`     | Associa ajudante.            |
 | `PUT`  | `/Task/{taskId}/finishTask` | Finaliza e distribui pontos. |
 
-### Exemplo de Cadastro (cURL)
-
-```bash
-curl -X POST "http://localhost:5283/Colaborador" \
-  -H "Content-Type: application/json" \
-  -d '{"nome":"João"}'
-```
-
-### Exemplo via C# (HttpClient)
-
-```csharp
-var dados = new { nome = EntryNome.Text };
-var json = JsonSerializer.Serialize(dados);
-var content = new StringContent(json, Encoding.UTF8, "application/json");
-var response = await http.PostAsync("http://localhost:5283/Colaborador", content);
-```
-
----
-
 ## ⚙️ Instalação Rápida
 
 ### Pré-requisitos
 
-* .NET 8 SDK ou superior (recomendado 9 se disponível)
-* SQL Server (local ou remoto)
-* Visual Studio 2022+ (com workloads .NET e MAUI se quiser testar o front)
+* .NET 9 SDK 
+* SQL Server 
+* Visual Studio 2022+ (com workloads .NET e MAUI)
 
 ### Backend
 
@@ -158,7 +111,7 @@ cd TalentUP
 
 # Rodar API
  dotnet run
-# API em http://localhost:5283 (ajuste conforme seu profile)
+# API em http://localhost:5283
 ```
 
 ---
@@ -202,28 +155,6 @@ cd TalentUP
 
 **Schema: dbo.BadgeEntities**
 ![BadgeEntities](https://github.com/user-attachments/assets/ea909759-091f-4f09-a874-d7e607ec774a)
-
----
-
-## 🗺 Roadmap
-
-* [ ] Completar telas MAUI (Login, Lista, Detalhes, Conquistas).
-* [ ] Adicionar vinculação de ajudantes no app.
-* [ ] Finalização de tarefas via UI.
-* [ ] Autenticação (JWT / Identity).
-* [ ] Deploy API (Azure) & publicação app.
-
----
-
-## 🤝 Contribuições
-
-Pull requests são bem-vindos! Abra uma issue para discutir melhorias.
-
----
-
-## 📄 Licença
-
-Defina uma licença (MIT sugerida). Adicione um arquivo `LICENSE` na raiz.
 
 ---
 
