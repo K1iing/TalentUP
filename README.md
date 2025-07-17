@@ -1,4 +1,5 @@
-TalentUP
+
+![Imagem do WhatsApp de 2025-07-14 à(s) 17 38 52_d89e1af6](https://github.com/user-attachments/assets/704cab80-91d0-4052-a122-044f51cf7418)
 
 Visão Geral
 
