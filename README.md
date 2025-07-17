@@ -38,8 +38,6 @@ Ver Suas Tarefas: Veja as tarefas que você criou (ativas ou já feitas).
 •
 Ver Todas as Tarefas: Veja todas as tarefas disponíveis no sistema.
 
-
-
 •
 Ajudar em Tarefas: Você pode se oferecer para ajudar em tarefas de outras pessoas.
 
@@ -47,12 +45,11 @@ Ajudar em Tarefas: Você pode se oferecer para ajudar em tarefas de outras pesso
 Terminar Tarefas: Quando uma tarefa é concluída, quem criou e quem ajudou ganha pontos.
 
 •
-Sistema de Prêmios: Acumular pontos te dá prêmios (ex: 50 pontos = “Colaborador Ouro”).
+Sistema de Prêmios: Acumular pontos te dá prêmios (ex: 50 pontos = “Iniciante Da Matrix”).
 
 Como é Feito (Arquitetura do Sistema)
 
-Parte de Trás (Backend) - Onde a Lógica Acontece
-
+(Backend)
 •
 Tecnologia: Usamos ASP.NET Core 9 para criar a parte que faz a lógica do sistema (API REST).
 
@@ -77,8 +74,6 @@ PUT /Task/{taskId}/helper: Para adicionar alguém como ajudante em uma tarefa.
 •
 PUT /Task/{taskId}/finishTask: Para finalizar uma tarefa e dar os pontos.
 
-
-
 Parte da Frente (Frontend) - Onde Você Vê e Interage (Em Desenvolvimento)
 
 •
@@ -90,7 +85,7 @@ Funcionalidades: Terá telas para entrar, ver tarefas, ver detalhes de tarefas (
 Como as Partes se Falam (Comunicação)
 
 •
-A parte da frente (app MAUI) se conecta com a parte de trás (API) usando HttpClient.
+O Front-End (app MAUI) se conecta com o Back-End (API) usando HttpClient.
 
 •
 As informações são trocadas no formato JSON.
@@ -184,43 +179,4 @@ Ajuste o Banco de Dados: No arquivo appsettings.json, mude a conexão para seu S
 
 3.
 Inicie o Backend: dotnet run (ele vai funcionar em https://localhost:5283).
-
-Configurando a Parte da Frente (Frontend) (EM ANDAMENTO)
-
-1.
-Vá para a pasta: cd ../Frontend
-
-2.
-Ajuste a Conexão: No projeto .NET MAUI, mude o endereço da API para https://localhost:5283.
-
-3.
-Inicie o Frontend: Abra o projeto no Visual Studio, escolha onde rodar (Windows, Android, etc.) e inicie.
-
-Como Usar
-
-1. 
-Entrar: Digite seu nome na tela inicial.
-
-2.
-Painel Principal: Veja seus pontos e prêmios.
-
-3.
-Organizar Tarefas:
-
-•
-Criar: Adicione novas tarefas com descrição e status "Ativa".
-
-•
-Ver: Veja suas tarefas ou todas as tarefas disponíveis.
-
-•
-Ajudar: Escolha uma tarefa e clique em "Ajudar".
-
-•
-Terminar: Conclua tarefas para dar pontos e ver se ganhou prêmios.
-
-
-
-4.
-Prêmios e Pontos: Seus pontos aumentam conforme você participa, e novos prêmios são liberados.
 
