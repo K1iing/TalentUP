@@ -4,22 +4,6 @@
 
 ---
 
-## 🔖 Índice
-
-* [Visão Geral](#-visão-geral)
-* [Objetivos](#-objetivos)
-* [Como Funciona](#-como-funciona)
-* [Arquitetura](#-arquitetura)
-* [Fluxo do Usuário](#-fluxo-do-usuário)
-* [Modelos de Dados](#-modelos-de-dados)
-* [Regras de Pontuação & Conquistas](#-regras-de-pontuação--conquistas)
-* [Endpoints da API](#-endpoints-da-api)
-* [Instalação Rápida](#-instalação-rápida)
-* [Screenshots](#-screenshots)
-* [Roadmap](#-roadmap)
-
----
-
 ## 🚀 Visão Geral
 
 O **TalentUP** é uma plataforma corporativa pensada para aumentar o engajamento entre colaboradores por meio de **gamificação**. Cada colaborador pode criar tarefas, ajudar colegas e acumular **pontos** que liberam **conquistas (badges)**. O foco atual do repositório está no **back-end/API + banco de dados**; a interface **.NET MAUI** está em desenvolvimento.
